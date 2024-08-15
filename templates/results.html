@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CBIR Results</title>
+</head>
+<body>
+    <h1>Similar Images</h1>
+    <h2>Query Image:</h2>
+    <img src="{{ url_for('static', filename='uploads/' + query_image) }}" alt="Query Image" style="max-width:300px;">
+    <h2>Results:</h2>
+    <ul>
+        {% for filename, sim in results %}
+        <li>
+            <img src="{{ url_for('static', filename='dataset/' + filename) }}" alt="{{ filename }}" style="max-width:200px;">
+            <p>Similarity: {{ sim|round(4) }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Try another image</a>
+</body>
+</html>
